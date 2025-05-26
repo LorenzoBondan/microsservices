@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/worker/pom.xml" />
         <option value="$PROJECT_DIR$/config-service/payroll/pom.xml" />
         <option value="$PROJECT_DIR$/payroll/pom.xml" />
+        <option value="$PROJECT_DIR$/hr-user/pom.xml" />
       </list>
     </option>
   </component>

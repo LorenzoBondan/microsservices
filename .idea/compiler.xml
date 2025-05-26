@@ -12,6 +12,7 @@
         <module name="config-service" />
         <module name="payroll" />
         <module name="worker" />
+        <module name="hr-user" />
       </profile>
     </annotationProcessing>
   </component>
@@ -20,6 +21,7 @@
       <module name="api-gateway" options="-parameters" />
       <module name="config-service" options="-parameters" />
       <module name="eureka-service" options="-parameters" />
+      <module name="hr-user" options="-parameters" />
       <module name="payroll" options="-parameters" />
       <module name="worker" options="-parameters" />
     </option>
