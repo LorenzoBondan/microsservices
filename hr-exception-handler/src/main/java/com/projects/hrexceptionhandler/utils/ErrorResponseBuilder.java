@@ -1,4 +1,4 @@
-package com.projects.hrexceptionhandler.controllers;
+package com.projects.hrexceptionhandler.utils;
 
 import com.projects.hrexceptionhandler.domain.CustomError;
 import com.projects.hrexceptionhandler.domain.ValidationError;

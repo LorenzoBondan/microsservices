@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.projects.hrexceptionhandler.domain.CustomError;
 import com.projects.hrexceptionhandler.domain.ValidationError;
 import com.projects.hrexceptionhandler.exceptions.*;
+import com.projects.hrexceptionhandler.utils.ErrorResponseBuilder;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;

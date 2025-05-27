@@ -1,6 +1,7 @@
 package com.projects.hrexceptionhandler.controllers;
 
-import com.projects.hrexceptionhandler.domain.CustomError;
+import com.projects.hrexceptionhandler.domain.FeignCustomError;
+import com.projects.hrexceptionhandler.utils.FeignErrorResponseBuilder;
 import feign.FeignException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -14,22 +15,40 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class FeignExceptionHandler {
 
     @ExceptionHandler(FeignException.Unauthorized.class)
-    public ResponseEntity<CustomError> handleFeignUnauthorized(FeignException.Unauthorized e, HttpServletRequest request) {
-        return ErrorResponseBuilder.buildErrorResponse(e, HttpStatus.UNAUTHORIZED, "Unauthorized from external service", request);
+    public ResponseEntity<FeignCustomError> handleFeignUnauthorized(FeignException.Unauthorized e, HttpServletRequest request) {
+        return FeignErrorResponseBuilder.buildFeignErrorResponse(
+                e,
+                HttpStatus.UNAUTHORIZED,
+                "Unauthorized from external service",
+                e.contentUTF8(),
+                request
+        );
     }
 
     @ExceptionHandler(FeignException.Forbidden.class)
-    public ResponseEntity<CustomError> handleFeignForbidden(FeignException.Forbidden e, HttpServletRequest request) {
-        return ErrorResponseBuilder.buildErrorResponse(e, HttpStatus.FORBIDDEN, "Forbidden from external service", request);
+    public ResponseEntity<FeignCustomError> handleFeignForbidden(FeignException.Forbidden e, HttpServletRequest request) {
+        return FeignErrorResponseBuilder.buildFeignErrorResponse(
+                e,
+                HttpStatus.FORBIDDEN,
+                "Forbidden from external service",
+                e.contentUTF8(),
+                request
+        );
     }
 
     @ExceptionHandler(FeignException.NotFound.class)
-    public ResponseEntity<CustomError> handleFeignNotFound(FeignException.NotFound e, HttpServletRequest request) {
-        return ErrorResponseBuilder.buildErrorResponse(e, HttpStatus.NOT_FOUND, "Resource not found (from another service)", request);
+    public ResponseEntity<FeignCustomError> handleFeignNotFound(FeignException.NotFound e, HttpServletRequest request) {
+        return FeignErrorResponseBuilder.buildFeignErrorResponse(
+                e,
+                HttpStatus.NOT_FOUND,
+                "Resource not found (from another service)",
+                e.contentUTF8(),
+                request
+        );
     }
 
     @ExceptionHandler(FeignException.class)
-    public ResponseEntity<CustomError> handleGenericFeign(FeignException e, HttpServletRequest request) {
+    public ResponseEntity<FeignCustomError> handleGenericFeign(FeignException e, HttpServletRequest request) {
         HttpStatus status = HttpStatus.resolve(e.status());
         if (status == null) status = HttpStatus.BAD_GATEWAY;
 
@@ -37,6 +56,12 @@ public class FeignExceptionHandler {
                 ? "Server error from external service"
                 : "Client error when calling external service";
 
-        return ErrorResponseBuilder.buildErrorResponse(e, status, message, request);
+        return FeignErrorResponseBuilder.buildFeignErrorResponse(
+                e,
+                status,
+                message,
+                e.contentUTF8(),
+                request
+        );
     }
 }
