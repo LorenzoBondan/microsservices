@@ -22,7 +22,6 @@ public class UserController {
         return ResponseEntity.ok(obj);
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_OPERATOR')")
     @GetMapping(value = "/search")
     public ResponseEntity<User> findByEmail(@RequestParam String email) {
         User obj = repository.findByEmail(email);
