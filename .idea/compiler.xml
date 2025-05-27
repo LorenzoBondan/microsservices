@@ -11,18 +11,22 @@
         <module name="hr-oauth" />
         <module name="config-service" />
         <module name="api-gateway" />
-        <module name="resource-server" />
+        <module name="hr-exception-handler" />
         <module name="payroll" />
         <module name="worker" />
         <module name="hr-user" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="resource-server" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api-gateway" options="-parameters" />
       <module name="config-service" options="-parameters" />
       <module name="eureka-service" options="-parameters" />
+      <module name="hr-exception-handler" options="-parameters" />
       <module name="hr-oauth" options="-parameters" />
       <module name="hr-user" options="-parameters" />
       <module name="payroll" options="-parameters" />
