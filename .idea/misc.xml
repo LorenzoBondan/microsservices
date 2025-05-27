@@ -12,6 +12,8 @@
         <option value="$PROJECT_DIR$/payroll/pom.xml" />
         <option value="$PROJECT_DIR$/hr-user/pom.xml" />
         <option value="$PROJECT_DIR$/api-gateway/hr-oauth/pom.xml" />
+        <option value="$PROJECT_DIR$/hr-oauth/pom.xml" />
+        <option value="$PROJECT_DIR$/resource-server/pom.xml" />
       </list>
     </option>
   </component>

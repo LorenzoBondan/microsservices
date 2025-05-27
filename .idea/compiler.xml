@@ -11,6 +11,7 @@
         <module name="hr-oauth" />
         <module name="config-service" />
         <module name="api-gateway" />
+        <module name="resource-server" />
         <module name="payroll" />
         <module name="worker" />
         <module name="hr-user" />
@@ -25,6 +26,7 @@
       <module name="hr-oauth" options="-parameters" />
       <module name="hr-user" options="-parameters" />
       <module name="payroll" options="-parameters" />
+      <module name="resource-server" options="-parameters" />
       <module name="worker" options="-parameters" />
     </option>
   </component>
