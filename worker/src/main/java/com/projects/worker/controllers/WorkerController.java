@@ -1,5 +1,6 @@
 package com.projects.worker.controllers;
 
+import com.projects.hrexceptionhandler.exceptions.ResourceNotFoundException;
 import com.projects.worker.entities.Worker;
 import com.projects.worker.repositories.WorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +29,9 @@ public class WorkerController {
         return ResponseEntity.ok().body(workers);
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_CLIENT')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_OPERATOR')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Worker> findById(@PathVariable Long id) {
-        return ResponseEntity.ok(repository.findById(id).orElse(null));
+        return ResponseEntity.ok(repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Worker not found")));
     }
 }
