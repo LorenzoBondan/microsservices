@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.projects.hrexceptionhandler.domain.CustomError;
 import com.projects.hrexceptionhandler.domain.ValidationError;
 import com.projects.hrexceptionhandler.exceptions.*;
-import feign.FeignException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
@@ -82,47 +81,5 @@ public class ControllerExceptionHandler {
                 .map(JsonMappingException.Reference::getFieldName)
                 .findFirst()
                 .orElse(null);
-    }
-
-    //////////// Feign exceptions
-
-    @ExceptionHandler(FeignException.NotFound.class)
-    public ResponseEntity<CustomError> handleFeignNotFound(FeignException.NotFound e, HttpServletRequest request) {
-        return ErrorResponseBuilder.buildErrorResponse(
-                e,
-                HttpStatus.NOT_FOUND,
-                "Resource not found (from another service): " + e.getMessage(),
-                request
-        );
-    }
-
-    @ExceptionHandler(FeignException.class)
-    public ResponseEntity<CustomError> handleGenericFeign(FeignException e, HttpServletRequest request) {
-        return ErrorResponseBuilder.buildErrorResponse(
-                e,
-                HttpStatus.BAD_GATEWAY,
-                "Error calling another service: " + e.getMessage(),
-                request
-        );
-    }
-
-    @ExceptionHandler(FeignException.Unauthorized.class)
-    public ResponseEntity<CustomError> handleFeignUnauthorized(FeignException.Unauthorized e, HttpServletRequest request) {
-        return ErrorResponseBuilder.buildErrorResponse(
-                e,
-                HttpStatus.UNAUTHORIZED,
-                "Unauthorized access when calling another service: " + e.getMessage(),
-                request
-        );
-    }
-
-    @ExceptionHandler(FeignException.Forbidden.class)
-    public ResponseEntity<CustomError> handleFeignForbidden(FeignException.Forbidden e, HttpServletRequest request) {
-        return ErrorResponseBuilder.buildErrorResponse(
-                e,
-                HttpStatus.FORBIDDEN,
-                "Forbidden access when calling another service: " + e.getMessage(),
-                request
-        );
     }
 }
