@@ -15,6 +15,7 @@
         <option value="$PROJECT_DIR$/hr-oauth/pom.xml" />
         <option value="$PROJECT_DIR$/resource-server/pom.xml" />
         <option value="$PROJECT_DIR$/hr-exception-handler/pom.xml" />
+        <option value="$PROJECT_DIR$/notification/pom.xml" />
       </list>
     </option>
   </component>

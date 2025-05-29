@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="eureka-service" />
         <module name="hr-oauth" />
+        <module name="notification" />
         <module name="config-service" />
         <module name="api-gateway" />
         <module name="hr-exception-handler" />
@@ -29,6 +30,7 @@
       <module name="hr-exception-handler" options="-parameters" />
       <module name="hr-oauth" options="-parameters" />
       <module name="hr-user" options="-parameters" />
+      <module name="notification" options="-parameters" />
       <module name="payroll" options="-parameters" />
       <module name="resource-server" options="-parameters" />
       <module name="worker" options="-parameters" />
